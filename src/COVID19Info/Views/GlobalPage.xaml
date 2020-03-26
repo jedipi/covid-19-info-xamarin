@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             mc:Ignorable="d"
+             x:Class="COVID19Info.Views.GlobalPage"
+             Title="{Binding Title}">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"    
+                 Command="{Binding RefreshViewCommand}">
+
+        <ScrollView>
+            <StackLayout Margin="10">
+                <Frame Margin="5">
+                    <StackLayout>
+                        <Label Margin="10,0,10,10">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="●" TextColor="#266489"/>
+                                    <Span Text=" Total Case: " />
+                                    <Span Text="{Binding Cases,StringFormat='{}{0:N0}'}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Margin="10,0,10,10">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="●" TextColor="#68B9C0" />
+                                    <Span Text=" Total Deaths: " />
+                                    <Span Text="{Binding Deaths,StringFormat='{}{0:N0}'}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Margin="10,0,10,10">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="●" TextColor="#90D585"/>
+                                    <Span Text=" Total Recovered: " />
+                                    <Span Text="{Binding Recovered,StringFormat='{}{0:N0}'}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
+                    
+                </Frame>
+
+                <forms:ChartView x:Name="chartView" 
+                                 Chart="{Binding Chart}" 
+                                 HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Margin="5" />
+            </StackLayout>
+            
+        </ScrollView>
+    </RefreshView>
+
+</ContentPage>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             mc:Ignorable="d"
+             Title="{Binding Title}"
+             x:Class="COVID19Info.Views.CountriesPage">
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"    
+                 Command="{Binding RefreshViewCommand}">
+
+        <ScrollView>
+            <StackLayout >
+                <SearchBar Placeholder="Search by country..." Text="{Binding SearchText}" x:Name="searchBar">
+                    <SearchBar.Behaviors>
+                        <behaviorsPack:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding SearchTextCmd}"
+                            CommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
+                    </SearchBar.Behaviors>
+                </SearchBar>
+                <CollectionView ItemsSource="{Binding Countries}" Margin="10">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="8" HorizontalOptions="EndAndExpand">
+                                <Frame Margin="2" Padding="5" BorderColor="LightGray" CornerRadius="5" HasShadow="True" >
+                                    <StackLayout>
+                                        <Label Margin="0" Padding="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium"/>
+                                        <Label Margin="0" Padding="0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Cases: "/>
+                                                    <Span Text="Cases: "/>
+                                                    <Span Text="{Binding TotalCases}" />
+                                                    <Span Text=" | Today: "/>
+                                                    <Span Text="{Binding NewCases}" />
+                                                    <Span Text=" | Active: "/>
+                                                    <Span Text="{Binding ActiveCases}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Margin="0" Padding="0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Deaths: "/>
+                                                    <Span Text="{Binding TotalDeaths}" />
+                                                    <Span Text=" | Today: "/>
+                                                    <Span Text="{Binding NewDeaths}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <!--<Label Margin="0" Padding="0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Recovered: "/>
+                                                    <Span Text="{Binding TotalRecovered}" />
+                                                    <Span Text=" | Critical: "/>
+                                                    <Span Text="{Binding SeriousCritical}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>-->
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label Text="No results matched your filter."
+                                   Margin="10,25,10,10"
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                            <Label Text="Try a broader filter?"
+                                   FontAttributes="Italic"
+                                   FontSize="12"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </StackLayout>
+
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

@@ -1,0 +1,8 @@
+.vs/
+src/COVID19Info.Android/obj/
+src/COVID19Info.Android/bin/
+src/COVID19Info.iOS/bin/
+src/COVID19Info.iOS/obj/
+src/COVID19Info/bin/
+src/COVID19Info/obj/
+src/COVID19Info/COVID19Info.csproj.user
