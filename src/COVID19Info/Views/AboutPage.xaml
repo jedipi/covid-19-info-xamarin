@@ -66,17 +66,31 @@
                                 <Span Text="https://www.worldometers.info/coronavirus/" 
                                       TextDecorations="Underline">
                                     <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenWebCommand}" />
+                                        <TapGestureRecognizer Command="{Binding OpenWebCommand}" 
+                                                              CommandParameter="https://www.worldometers.info/coronavirus/"/>
                                     </Span.GestureRecognizers>
                                 </Span>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Please visit my GitHub repository for source code " />
+                                <Span Text="https://github.com/jedipi/covid-19-info-xamarin" 
+                                    TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenWebCommand}" 
+                                                              CommandParameter="https://github.com/jedipi/covid-19-info-xamarin"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </StackLayout>
         </ScrollView>
     </Grid>

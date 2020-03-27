@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -10,9 +11,10 @@ namespace COVID19Info.ViewModels
         public AboutViewModel()
         {
             Title = "About";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://www.worldometers.info/coronavirus/"));
+            OpenWebCommand = new Command<string>(async (p) => await Browser.OpenAsync(p));
         }
 
-        public ICommand OpenWebCommand { get; }
+        
+        public ICommand OpenWebCommand { get; set; }
     }
 }

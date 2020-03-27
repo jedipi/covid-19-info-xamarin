@@ -10,6 +10,7 @@ namespace COVID19Info.Services
 {
     public interface IHtmlData
     {
+        string LastUpdate { get; set; }
         List<int> Total { get; set; }
         ObservableCollection<Country> Countries { get; set; }
         Task GetData();

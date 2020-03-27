@@ -10,17 +10,15 @@ namespace COVID19Info.ViewModels
     
     public class GlobalViewModel : BaseViewModel
     {
-        private bool _isRefreshing;
-
-        #region Properties  
+        #region Properties
         public IHtmlData HtmlContent => DependencyService.Get<IHtmlData>();
         public int Cases { get; set; }
         public int Deaths { get; set; }
         public int Recovered { get; set; }
+        public string LastUpdate { get; set; }
         public BarChart Chart { get; set; }
         public bool IsRefreshing { get; set; }
         public Command RefreshViewCommand { get; set; }
-        
         #endregion
 
         public GlobalViewModel()
@@ -38,19 +36,19 @@ namespace COVID19Info.ViewModels
             {
                 new Microcharts.Entry(Cases)
                 {
-                    Label = "Total Case",
+                    Label = "Cases",
                     ValueLabel = Cases.ToString("N0"),
                     Color = SKColor.Parse("#266489")
                 },
                 new Microcharts.Entry(Deaths)
                 {
-                    Label = "Total Deaths",
+                    Label = "Deaths",
                     ValueLabel = Deaths.ToString("N0"),
                     Color = SKColor.Parse("#68B9C0")
                 },
                 new Microcharts.Entry(Recovered)
                 {
-                    Label = "Total Recovered",
+                    Label = "Recovered",
                     ValueLabel = Recovered.ToString("N0"),
                     Color = SKColor.Parse("#90D585")
                 }
@@ -71,6 +69,7 @@ namespace COVID19Info.ViewModels
 
             if (HtmlContent.Total.Count > 0)
             {
+                LastUpdate = HtmlContent.LastUpdate;
                 Cases = HtmlContent.Total[0];
                 Deaths = HtmlContent.Total[1];
                 Recovered = HtmlContent.Total[2];

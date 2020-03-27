@@ -16,36 +16,28 @@
             <StackLayout Margin="10">
                 <Frame Margin="5">
                     <StackLayout>
-                        <Label Margin="10,0,10,10">
+                        <Label Margin="10,0,10,10" FontSize="Large" HorizontalTextAlignment="Center">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="●" TextColor="#266489"/>
-                                    <Span Text=" Total Case: " />
-                                    <Span Text="{Binding Cases,StringFormat='{}{0:N0}'}" />
+                                    <Span Text="Total Case: " />
+                                    <Span Text="{Binding Cases,StringFormat='{}{0:N0}'}" TextColor="#266489" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Label Margin="10,0,10,10">
+                        <Label HorizontalTextAlignment="Center">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="●" TextColor="#68B9C0" />
-                                    <Span Text=" Total Deaths: " />
-                                    <Span Text="{Binding Deaths,StringFormat='{}{0:N0}'}" />
+                                    <Span Text=" Deaths: " />
+                                    <Span Text="{Binding Deaths,StringFormat='{}{0:N0}'} " TextColor="#68B9C0" />
+                                    <Span Text="  ●" TextColor="#90D585"/>
+                                    <Span Text=" Recovered: " />
+                                    <Span Text="{Binding Recovered,StringFormat='{}{0:N0}'}" TextColor="#90D585"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Label Margin="10,0,10,10">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="●" TextColor="#90D585"/>
-                                    <Span Text=" Total Recovered: " />
-                                    <Span Text="{Binding Recovered,StringFormat='{}{0:N0}'}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-
+                        <Label Text="{Binding LastUpdate}" FontSize="Micro" HorizontalTextAlignment="Center" TextColor="Gray"></Label>
                     </StackLayout>
-                    
                 </Frame>
 
                 <forms:ChartView x:Name="chartView" 

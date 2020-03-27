@@ -15,6 +15,7 @@ namespace COVID19Info.Services
         private HtmlDocument _html { get; set; }
         public List<int> Total { get; set; } = new List<int>();
         public ObservableCollection<Country> Countries { get; set; } = new ObservableCollection<Country>();
+        public string LastUpdate { get; set; }
 
         /// <summary>
         /// retrieve the html page from https://www.worldometers.info/coronavirus/
@@ -44,6 +45,23 @@ namespace COVID19Info.Services
                 return;
 
             Total.Clear();
+            LastUpdate = "";
+
+            // parse last update
+            var tag = _html.DocumentNode.SelectSingleNode("//div[@id='page-top']");
+            var sibling = tag.NextSibling;
+
+            while (sibling != null)
+            {
+                if (sibling.NodeType == HtmlNodeType.Element)
+                {
+                    LastUpdate = sibling.InnerHtml; 
+                    break;
+                }
+
+                sibling = sibling.NextSibling;
+            }
+            
 
             // get data from <div class="maincounter-number">
             var nodes = _html.DocumentNode.SelectNodes("//div[contains(@class, 'maincounter-number')]");
