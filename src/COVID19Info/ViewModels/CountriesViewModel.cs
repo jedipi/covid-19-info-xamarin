@@ -17,6 +17,7 @@ namespace COVID19Info.ViewModels
         public IHtmlData HtmlContent => DependencyService.Get<IHtmlData>();
         public bool IsRefreshing { get; set; }
         public ObservableCollection<Country> Countries { get; set; }
+        public Country CountryTotal { get; set; }
         public Command RefreshViewCommand { get; set; }
         public Command<string> SearchTextCmd { get; set; }
 
@@ -51,7 +52,8 @@ namespace COVID19Info.ViewModels
 
             if (HtmlContent.Countries.Count > 0)
             {
-                Countries = _unfilteredItems = HtmlContent.Countries;
+                CountryTotal = HtmlContent.CountryTotal;
+                Countries = _unfilteredItems = new ObservableCollection<Country>(HtmlContent.Countries.OrderByDescending(x=>x.TotalCases));
             }
 
             this.IsRefreshing = false;

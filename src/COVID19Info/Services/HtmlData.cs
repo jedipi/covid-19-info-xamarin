@@ -14,7 +14,8 @@ namespace COVID19Info.Services
         public const string Datasource = @"https://www.worldometers.info/coronavirus/";
         private HtmlDocument _html { get; set; }
         public List<int> Total { get; set; } = new List<int>();
-        public ObservableCollection<Country> Countries { get; set; } = new ObservableCollection<Country>();
+        public List<Country> Countries { get; set; } = new List<Country>();
+        public Country CountryTotal { get; set; }
         public string LastUpdate { get; set; }
 
         /// <summary>
@@ -91,6 +92,7 @@ namespace COVID19Info.Services
             var rows = _html.DocumentNode.SelectNodes("//table[@id='main_table_countries_today']/tbody/tr");
             foreach (var row in rows)
             {
+                
                 var cells = row.SelectNodes(".//td");
                 var country = new Country();
 
@@ -127,7 +129,15 @@ namespace COVID19Info.Services
                 int.TryParse(cells[7].InnerText.Trim(), NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out temp);
                 country.TotalCasesPer1MPop = temp;
 
-                Countries.Add(country);
+                if (row == rows.Last())
+                {
+                    CountryTotal = country;
+                }
+                else
+                {
+                    Countries.Add(country);
+                }
+                
             }
         }
     }

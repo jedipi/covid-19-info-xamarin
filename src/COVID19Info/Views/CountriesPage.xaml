@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              Title="{Binding Title}"
              x:Class="COVID19Info.Views.CountriesPage">
+    <StackLayout>
     <RefreshView IsRefreshing="{Binding IsRefreshing}"    
                  Command="{Binding RefreshViewCommand}">
 
@@ -83,7 +84,36 @@
                     </CollectionView.EmptyView>
                 </CollectionView>
             </StackLayout>
+            
 
         </ScrollView>
     </RefreshView>
+        <BoxView HeightRequest="1"  BackgroundColor="LightGray"/>
+        <StackLayout Margin="20,10">
+            <Label Margin="0" Padding="0" Text="{Binding CountryTotal.Name}" FontAttributes="Bold" FontSize="Medium"/>
+            <Label Margin="0" Padding="0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Cases: "/>
+                        <Span Text="Cases: "/>
+                        <Span Text="{Binding CountryTotal.TotalCases}" />
+                        <Span Text=" | Today: "/>
+                        <Span Text="{Binding CountryTotal.NewCases}" />
+                        <Span Text=" | Active: "/>
+                        <Span Text="{Binding CountryTotal.ActiveCases}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Margin="0" Padding="0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Deaths: "/>
+                        <Span Text="{Binding CountryTotal.TotalDeaths}" />
+                        <Span Text=" | Today: "/>
+                        <Span Text="{Binding CountryTotal.NewDeaths}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
