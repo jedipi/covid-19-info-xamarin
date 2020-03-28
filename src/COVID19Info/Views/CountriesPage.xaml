@@ -90,7 +90,7 @@
     </RefreshView>
         <BoxView HeightRequest="1"  BackgroundColor="LightGray"/>
         <StackLayout Margin="20,10">
-            <Label Margin="0" Padding="0" Text="{Binding CountryTotal.Name}" FontAttributes="Bold" FontSize="Medium"/>
+            <Label Margin="0" Padding="0" Text="Total:" FontAttributes="Bold" FontSize="Medium"/>
             <Label Margin="0" Padding="0">
                 <Label.FormattedText>
                     <FormattedString>
