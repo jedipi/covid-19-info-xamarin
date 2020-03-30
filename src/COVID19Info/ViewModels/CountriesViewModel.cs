@@ -30,13 +30,16 @@ namespace COVID19Info.ViewModels
 
         private void FilterCmd(string filter)
         {
+            if (_unfilteredItems == null)
+                return;
+
             if (string.IsNullOrEmpty(filter))
             {
                 Countries = _unfilteredItems;
             }
             else
             {
-                Countries = new ObservableCollection<Country>(_unfilteredItems.Where(x => x.Name.ToLower().Contains(filter)));
+                Countries = new ObservableCollection<Country>(_unfilteredItems.Where(x => x.Name.ToLower().Contains(filter.ToLower())));
             }
         }
 

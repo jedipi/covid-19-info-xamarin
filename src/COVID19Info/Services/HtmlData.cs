@@ -18,6 +18,10 @@ namespace COVID19Info.Services
         public Country CountryTotal { get; set; }
         public string LastUpdate { get; set; }
 
+        public HtmlData()
+        {
+
+        }
         /// <summary>
         /// retrieve the html page from https://www.worldometers.info/coronavirus/
         /// </summary>

@@ -32,7 +32,6 @@
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span Text="Cases: "/>
-                                                    <Span Text="Cases: "/>
                                                     <Span Text="{Binding TotalCases}" />
                                                     <Span Text=" | Today: "/>
                                                     <Span Text="{Binding NewCases}" />
@@ -94,7 +93,6 @@
             <Label Margin="0" Padding="0">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Cases: "/>
                         <Span Text="Cases: "/>
                         <Span Text="{Binding CountryTotal.TotalCases}" />
                         <Span Text=" | Today: "/>
